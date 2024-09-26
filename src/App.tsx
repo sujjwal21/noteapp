@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// App.tsx
+import React, { useState, useEffect } from 'react';
+import TodoList from './components/TodoList';
+import TodoInput from './components/TodoInput';
+import axios from 'axios';
 
-function App() {
+const App = () => {
+  const [tasks, setTasks] = useState<string[]>([]);
+
+  useEffect(() => {
+    // Fetch tasks from backend
+    axios.get('http://localhost:3000/fetchAllTasks')
+      .then(response => {
+        console.log(response)
+        setTasks(response.data.tasks);
+      })
+      .catch(error => console.error('Error fetching tasks:', error));
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='flex justify-center items-center flex-col gap-4'>
+      <h1  className='text-3xl font-bold'>Note App</h1>
+      <TodoInput setTasks={setTasks} />
+      <TodoList tasks={tasks} />
     </div>
   );
-}
+};
 
 export default App;
