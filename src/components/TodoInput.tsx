@@ -19,26 +19,15 @@ const TodoInput = ({
   };
 
   return (
-    // <div className="flex items-center border-2 border-gray-300 p-2 rounded-lg" >
-    //   <input
-    //     type="text"
-    //     value={task}
-    //     onChange={(e) => setTask(e.target.value)}
-    //     placeholder="Enter a new task"
-    //   />
-    //   <button className="ml-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600" onClick={handleAddTask}>Add Task</button>
-    // </div>
-    <div className="flex border-2 border-gray-300 p-2 rounded-lg shadow-sm bg-white">
+    <div className="flex items-center" >
       <input
         type="text"
         value={task}
+        className="w-80 border-2 border-gray-300 p-2 rounded-lg"
         onChange={(e) => setTask(e.target.value)}
-        placeholder="Enter a new task"
-        className="flex-grow p-2 border-none outline-none "
+        placeholder="New Note..."
       />
-      <button className="ml-2 px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600">
-        Add
-      </button>
+      <button className="ml-2 px-4 py-2 bg-orange-800 text-white rounded-lg hover:bg-orange-700" onClick={handleAddTask}>Add</button>
     </div>
   );
 };
